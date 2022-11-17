@@ -1,4 +1,5 @@
 import React, { useState } from 'react'
+import { useEffect } from 'react';
 import closeBtn from '../img/cerrar.svg'
 import Message from './Message';
 
@@ -8,13 +9,23 @@ const Modal = (
         animateModal, 
         setAnimateModal, 
         keepExpense,
-        budget
+        budget,
+        editExpense,
+        expenses
     }) => {
+       
+        const [message, setMessage] = useState('')
+        const [name, setName] = useState('');
+        const [quantity, setQuantity] = useState('');
+        const [category, setCategory] = useState('');
 
-    const [message, setMessage] = useState('')
-    const [name, setName] = useState('');
-    const [quantity, setQuantity] = useState('');
-    const [category, setCategory] = useState('');
+        useEffect(() => {
+            if(Object.keys(editExpense).length > 0) {
+                setName(editExpense.name);
+                setQuantity(editExpense.quantity);
+                setCategory(editExpense.category)
+            }
+        }, [])
 
     const closeModal = () => {
         setAnimateModal(false);
@@ -41,7 +52,8 @@ const Modal = (
             }, 3000)
             return
         }
-
+        
+        const edited = expenses.map(e => e.id === editExpense.id ? editExpense : e)
         keepExpense({name, quantity, category})
         setAnimateModal(false);
 
