@@ -1,8 +1,9 @@
-import React from 'react'
+import React, { useEffect } from 'react'
 import BudgetControl from './BudgetControl'
 import NewBudget from './NewBudget'
 
 const Header = ({expenses, budget, setBudget, isBudgetValid, setIsBudgetValid}) => {
+
   return (
     <header>
         <h1>Budget Worksheet</h1>

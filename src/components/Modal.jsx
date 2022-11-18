@@ -10,20 +10,24 @@ const Modal = (
         setAnimateModal, 
         keepExpense,
         budget,
-        editExpense,
-        expenses
+        setEditExpense,
+        editExpense
     }) => {
        
         const [message, setMessage] = useState('')
         const [name, setName] = useState('');
         const [quantity, setQuantity] = useState('');
         const [category, setCategory] = useState('');
+        const [date, setDate] = useState('');
+        const [id, setId] = useState('')
 
         useEffect(() => {
             if(Object.keys(editExpense).length > 0) {
                 setName(editExpense.name);
                 setQuantity(editExpense.quantity);
-                setCategory(editExpense.category)
+                setCategory(editExpense.category);
+                setId(editExpense.id);
+                setDate(editExpense.date);
             }
         }, [])
 
@@ -32,12 +36,14 @@ const Modal = (
 
         setTimeout(() => {
             setModal(false);
-        }, 500)
+        }, 500);
+        setEditExpense({})
     }
 
     const handleSubmit = (e) => {
         e.preventDefault();
 
+        
         if([name, quantity, category].includes('')){
             setMessage('All fields are required')
             setTimeout(() => {
@@ -53,13 +59,13 @@ const Modal = (
             return
         }
         
-        const edited = expenses.map(e => e.id === editExpense.id ? editExpense : e)
-        keepExpense({name, quantity, category})
+        keepExpense({name, quantity, category, date, id})
         setAnimateModal(false);
 
         setTimeout(() => {
             setModal(false);
         }, 500)
+        setEditExpense({})
     }
 
     return (
@@ -74,7 +80,7 @@ const Modal = (
 
             <form onSubmit={handleSubmit} className={`formulario ${animateModal ? 'animar' : 'cerrar'}`}>
                 {message && <Message type='error'>{message}</Message>}
-                <legend>New Expense</legend>
+                <legend>{!editExpense.name ? 'New Expense' : 'Edit Expense'}</legend>
                 <div className='campo'>
                     <label htmlFor="name">Expense Name</label>
                     <input 
@@ -111,7 +117,7 @@ const Modal = (
 
                 <input 
                     type="submit"
-                    value='Add Expense' 
+                    value={!editExpense.name ? 'Add Expense' : 'Keep Changes'} 
                 />
             </form>
         </div>
