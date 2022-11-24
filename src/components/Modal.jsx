@@ -51,13 +51,6 @@ const Modal = (
             }, 3000)
             return
         }
-        if(budget < quantity){
-            setMessage('Your expense must be minor or equal to your budget')
-            setTimeout(() => {
-                setMessage('');
-            }, 3000)
-            return
-        }
         
         keepExpense({name, quantity, category, date, id})
         setAnimateModal(false);

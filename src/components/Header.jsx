@@ -2,14 +2,14 @@ import React, { useEffect } from 'react'
 import BudgetControl from './BudgetControl'
 import NewBudget from './NewBudget'
 
-const Header = ({expenses, budget, setBudget, isBudgetValid, setIsBudgetValid}) => {
+const Header = ({expenses, setExpenses, budget, setBudget, isBudgetValid, setIsBudgetValid}) => {
 
   return (
     <header>
         <h1>Budget Worksheet</h1>
 
         {isBudgetValid ? (
-            <BudgetControl expenses={expenses} budget={budget}/>
+            <BudgetControl expenses={expenses} setExpenses={setExpenses} budget={budget} setBudget={setBudget} setIsBudgetValid={setIsBudgetValid}/>
         ) : (
             <NewBudget
                 budget={budget} 
