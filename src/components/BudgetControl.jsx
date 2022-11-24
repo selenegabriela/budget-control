@@ -43,7 +43,6 @@ const BudgetControl = ({expenses, setExpenses, budget, setBudget, setIsBudgetVal
     }
     return (
         <div className='contenedor-presupuesto contenedor sombra dos-columnas'>
-            <button onClick={handleResetApp} type='button' className='reset-app'>Reset App</button>
             <div>
                 <CircularProgressbar
                     styles={buildStyles({
@@ -56,6 +55,7 @@ const BudgetControl = ({expenses, setExpenses, budget, setBudget, setIsBudgetVal
                 />
             </div>
             <div className='contenido-presupuesto'>
+                <button onClick={handleResetApp} type='button' className='reset-app'>Reset App</button>
                 <p>
                     <span>Budget: </span>{formatQuantity(budget)}
                 </p>
