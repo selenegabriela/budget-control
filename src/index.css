@@ -137,7 +137,7 @@ header h1 {
     .formulario input[type="number"],
     .formulario input[type="submit"] {
         width: 90%;
-        margin-left: 5px;
+        margin-left: 2px;
     }
 }
 
